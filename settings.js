@@ -7,8 +7,8 @@ const chalk = require('chalk')
 */
 global.OFFLINE = false // if you want put bot offline put true
 global.BOT_PRIVET = false // if you want use bot privet 
-global.AUTO_CHATGPT = false // if you want auto ai bot mod
-global.READ_MESSAGE = false // if you want read message from bot
+global.AUTO_CHATGPT = true // if you want auto ai bot mod
+global.READ_MESSAGE = true // if you want read message from bot
 global.ONLY_INBOX = false // Only inbox mod ( only pm ) use
 global.ONLY_GROUPS = false // Only Groups Use
 
@@ -58,3 +58,14 @@ fs.watchFile(file, () => {
 	delete require.cache[file]
 	require(file)
 })
+import openai
+
+openai.ChatCompletion.create(
+  model="gpt-3.5-turbo",
+  messages=[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": "Who won the world series in 2020?"},
+        {"role": "assistant", "content": "The Los Angeles Dodgers won the World Series in 2020."},
+        {"role": "user", "content": "Where was it played?"}
+    ]
+)
